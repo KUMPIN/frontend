@@ -5,6 +5,30 @@ const Send_Auth = () => {};
 
 type Props = {};
 export default class RegisterPage extends Component<Props> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      Id: '',
+      password: '',
+      phone: '',
+    };
+  }
+
+  handleId = (Id) => {
+    this.setState({Id: Id});
+  };
+
+  handlePassword = (password) => {
+    this.setState({password: password});
+  };
+
+  handlePhone = (phone) => {
+    this.setState({phone: phone});
+  };
+
+  handleLogin = () => {
+    alert(`ID : ${this.state.Id}\nPassword : ${this.state.password}\nPhone : ${this.state.phone}`);
+  };
     render() {
         return (
             <View style={styles.container}>
@@ -17,7 +41,7 @@ export default class RegisterPage extends Component<Props> {
             <View style={{flexDirection:'column',justifyContent:'space-between',paddingBottom:10}}>
             <Text style={{color: 'black', fontSize:15, paddingBottom:5}}>ID 입력</Text>
             <View style={{flexDirection:'row'}}>
-                <TextInput keyboardType="default" placeholder="4자리 이상 영문/숫자" style={{backgroundColor: '#F6F6F6', width:'70%', height:35, borderWidth: 0, borderRadius: 10, padding:5}}/>
+                <TextInput keyboardType="default" placeholder="4자리 이상 영문/숫자" onChangeText={this.handleId} style={{backgroundColor: '#F6F6F6', width:'70%', height:35, borderWidth: 0, borderRadius: 10, padding:5}}/>
                 <TouchableOpacity onPress={Send_Auth} style={styles.button}>
                     <Text style={styles.buttonText}>중복확인</Text>
                 </TouchableOpacity>
@@ -29,7 +53,7 @@ export default class RegisterPage extends Component<Props> {
           </View>
           <View style={{flexDirection:'column',justifyContent:'space-between',paddingBottom:10}}>
             <Text style={{color: 'black', fontSize:15, paddingBottom:5}}>비밀번호 입력</Text>
-            <TextInput keyboardType="default" secureTextEntry={true} placeholder="8자리 이상 영문/숫자/특수문자" style={{backgroundColor: '#F6F6F6', width:'100%', height:35, borderWidth: 0, borderRadius: 10, padding:5}}/>
+            <TextInput keyboardType="default" secureTextEntry={true} placeholder="8자리 이상 영문/숫자/특수문자" onChangeText={this.handlePassword} style={{backgroundColor: '#F6F6F6', width:'100%', height:35, borderWidth: 0, borderRadius: 10, padding:5}}/>
           </View>
           <View style={{flexDirection:'column',justifyContent:'space-between',paddingBottom:10}}>
             <Text style={{color: 'black', fontSize:15, paddingBottom:5}}>비밀번호 확인</Text>
@@ -39,7 +63,7 @@ export default class RegisterPage extends Component<Props> {
           <View style={{flexDirection:'column',justifyContent:'space-between',paddingTop:10}}>
             <Text style={{color: 'black', fontSize:15, paddingBottom:5}}>휴대폰 인증</Text>
             <View style={{flexDirection:'row'}}>
-                <TextInput keyboardType="default" placeholder="전화번호 입력" style={{backgroundColor: '#F6F6F6', width:'70%', height:35, borderWidth: 0, borderRadius: 10, padding:5}}/>
+                <TextInput keyboardType="default" placeholder="전화번호 입력" onChangeText={this.handlePhone} style={{backgroundColor: '#F6F6F6', width:'70%', height:35, borderWidth: 0, borderRadius: 10, padding:5}}/>
                 <TouchableOpacity onPress={Send_Auth} style={styles.button}>
                     <Text style={styles.buttonText}>인증 요청</Text>
                 </TouchableOpacity>
@@ -50,7 +74,7 @@ export default class RegisterPage extends Component<Props> {
             <Text style={{color: 'black', fontSize:15, paddingBottom:5}}>인증번호 입력</Text>
             <View style={{flexDirection:'row'}}>
                 <TextInput keyboardType="default" placeholder="SMS로 전송받은 4자리 번호 입력" style={{backgroundColor: '#F6F6F6', width:'70%', height:35, borderWidth: 0, borderRadius: 10, padding:5}}/>
-                <TouchableOpacity onPress={Send_Auth} style={styles.button}>
+                <TouchableOpacity onPress={this.handleLogin} style={styles.button}>
                     <Text style={styles.buttonText}>인증 확인</Text>
                 </TouchableOpacity>
             </View>

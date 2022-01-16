@@ -5,6 +5,26 @@ const Login_Submit = () => {};
 
 type Props = {};
 export default class LoginPage extends Component<Props> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      Id: '',
+      password: '',
+    };
+  }
+
+  handleId = (Id) => {
+    this.setState({Id: Id});
+  };
+
+  handlePassword = (password) => {
+    this.setState({password: password});
+  };
+
+  handleLogin = () => {
+    alert(`ID : ${this.state.Id}\npassword: ${this.state.password}`);
+  };
+
     render() {
         return (
             <View style={styles.container}>
@@ -16,14 +36,14 @@ export default class LoginPage extends Component<Props> {
                 <View style={styles.content}>
                 <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',paddingBottom:10}}>
             <Text style={{color: 'black', fontSize:15}}>아이디</Text>
-            <TextInput keyboardType="default" placeholder="아이디 입력" style={{backgroundColor: '#F6F6F6', width:'70%', height:35, borderWidth: 0, borderRadius: 10, padding:5}}/>
+            <TextInput keyboardType="default" placeholder="아이디 입력" onChangeText={this.handleId} style={{backgroundColor: '#F6F6F6', width:'70%', height:35, borderWidth: 0, borderRadius: 10, padding:5}}/>
           </View>
           <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',paddingBottom:30}}>
             <Text style={{color: 'black', fontSize:15}}>비밀번호</Text>
-            <TextInput keyboardType="default" secureTextEntry={true} placeholder="비밀번호 입력" style={{backgroundColor: '#F6F6F6', width:'70%', height:35, borderWidth: 0, borderRadius: 10, padding:5}}/>
+            <TextInput keyboardType="default" secureTextEntry={true} placeholder="비밀번호 입력" onChangeText={this.handlePassword} style={{backgroundColor: '#F6F6F6', width:'70%', height:35, borderWidth: 0, borderRadius: 10, padding:5}}/>
           </View>
           <View style={styles.footer}>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity onPress={this.handleLogin} style={styles.button}>
               <Text style={styles.buttonText}>로그인</Text>
             </TouchableOpacity>
             <View style={{textAlign: 'center', flexDirection: 'row', paddingTop: 10}}>
