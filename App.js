@@ -5,11 +5,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LoginPage from './LoginPage';
 import RegisterPage from './RegisterPage';
 import Register2Page from './Register2Page';
+import MainPage from './MainPage';
 
 const Stack = createStackNavigator();
+
 function App() {
   return (
-    <NavigationContainer>
+    <MainPage/>
+    /*<NavigationContainer>
       <Stack.Navigator initialRouteName='"LOGIN'>
         <Stack.Screen name="LOGIN" component={LoginPage}
           options={{
@@ -24,7 +27,7 @@ function App() {
             headerShown: false
           }}/>
       </Stack.Navigator>
-    </NavigationContainer>
+    </NavigationContainer>*/
   );
 }
 

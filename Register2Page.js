@@ -18,7 +18,22 @@ export default class Register2Page extends Component<Props> {
     active_Tag_9: false,
     active_Tag_10: false,
     active_Tag_11: false,
-    active_Gender: null,
+    name: '',
+    age: '',
+    gender: '',
+    interest: '',
+  };
+
+  handleName = (name) => {
+    this.setState({name: name});
+  }
+
+  handleAge = (age) => {
+    this.setState({age: age});
+  }
+
+  forCheck = () => {
+    alert(`Nickname : ${this.state.name}\nAge: ${this.state.age}\nGender: ${this.state.gender}\n`);
   };
 
     render() {
@@ -33,7 +48,7 @@ export default class Register2Page extends Component<Props> {
             <View style={{flexDirection:'column',justifyContent:'space-between',paddingBottom:10}}>
             <Text style={{color: 'black', fontSize:15, paddingBottom:5}}>닉네임 설정</Text>
             <View style={{flexDirection:'row'}}>
-                <TextInput keyboardType="default" placeholder="사용할 닉네임 입력" style={{backgroundColor: '#F6F6F6', width:'70%', height:35, borderWidth: 0, borderRadius: 10, padding:5}}/>
+                <TextInput keyboardType="default" placeholder="사용할 닉네임 입력" onChangeText={this.handleName} style={{backgroundColor: '#F6F6F6', width:'70%', height:35, borderWidth: 0, borderRadius: 10, padding:5}}/>
                 <TouchableOpacity onPress={Send_Auth} style={styles.button}>
                     <Text style={styles.buttonText}>중복확인</Text>
                 </TouchableOpacity>
@@ -45,14 +60,14 @@ export default class Register2Page extends Component<Props> {
           </View>
           <View style={{flexDirection:'column',justifyContent:'space-between',paddingBottom:10}}>
             <Text style={{color: 'black', fontSize:15, paddingBottom:5}}>나이 입력</Text>
-            <TextInput keyboardType="default" placeholder="현재 나이 입력" style={{backgroundColor: '#F6F6F6', width:'100%', height:35, borderWidth: 0, borderRadius: 10, padding:5}}/>
+            <TextInput keyboardType="default" placeholder="현재 나이 입력" onChangeText={this.handleAge} style={{backgroundColor: '#F6F6F6', width:'100%', height:35, borderWidth: 0, borderRadius: 10, padding:5}}/>
           </View>
           <Text style={{color: 'black', fontSize:15}}>성별 정보</Text>
           <View style={{flexDirection:'row', justifyContent:'space-between', height: '8%'}}>
-            <TouchableOpacity onPress={()=>{this.setState({active_Gender: 0})}} style={this.state.active_Gender === 0 ? styles.genderMaleactive : styles.genderMale}>
+            <TouchableOpacity onPress={()=>{this.setState({gender: '남'})}} style={this.state.gender === '남' ? styles.genderMaleactive : styles.genderMale}>
               <Text style={{textAlign: 'center', color: 'white', fontSize: 18, fontWeight: 'bold'}}>남자</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={()=>{this.setState({active_Gender: 1})}} style={this.state.active_Gender === 1 ? styles.genderFemaleactive : styles.genderFemale}>
+            <TouchableOpacity onPress={()=>{this.setState({gender: '여'})}} style={this.state.gender === '여' ? styles.genderFemaleactive : styles.genderFemale}>
               <Text style={{textAlign: 'center', color: 'white', fontSize: 18, fontWeight: 'bold'}}>여자</Text>
             </TouchableOpacity>
           </View>
@@ -97,7 +112,7 @@ export default class Register2Page extends Component<Props> {
               <Text style={styles.tagText}>#카페</Text>
               </TouchableOpacity>
             </View>
-            <TouchableOpacity onPress={Send_Auth} style={{borderRadius: 10, alignSelf:'center', justifyContent:'center', backgroundColor:'#00A7FB', width: '25%', height: '10%', marginTop: '10%'}}>
+            <TouchableOpacity onPress={this.forCheck} style={{borderRadius: 10, alignSelf:'center', justifyContent:'center', backgroundColor:'#00A7FB', width: '25%', height: '10%', marginTop: '10%'}}>
               <Text style={{textAlign: 'center', color: 'white', fontSize: 16, fontWeight: 'bold'}}>시작하기</Text>
             </TouchableOpacity>
           </View>

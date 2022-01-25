@@ -1,7 +1,6 @@
 ﻿import React, {Component} from 'react';
 import {StyleSheet, Text, View ,Image, TextInput, TouchableOpacity} from 'react-native';
-
-const Login_Submit = () => {};
+import base64 from 'react-native-base64';
 
 type Props = {};
 export default class LoginPage extends Component<Props> {
@@ -18,11 +17,26 @@ export default class LoginPage extends Component<Props> {
   };
 
   handlePassword = (password) => {
+    password = base64.encode(`${password}`);
     this.setState({password: password});
   };
 
   handleLogin = () => {
     alert(`ID : ${this.state.Id}\npassword: ${this.state.password}`);
+  };
+
+  Submit = () => {
+    fetch('http://kitcapstone.iptime.org:3000', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ID: this.state.Id,
+        PW: this.state.password,
+      }),
+    }).catch(error => console.error(error));
   };
 
     render() {
@@ -43,7 +57,7 @@ export default class LoginPage extends Component<Props> {
             <TextInput keyboardType="default" secureTextEntry={true} placeholder="비밀번호 입력" onChangeText={this.handlePassword} style={{backgroundColor: '#F6F6F6', width:'70%', height:35, borderWidth: 0, borderRadius: 10, padding:5}}/>
           </View>
           <View style={styles.footer}>
-            <TouchableOpacity onPress={this.handleLogin} style={styles.button}>
+            <TouchableOpacity onPress={this.Submit} style={styles.button}>
               <Text style={styles.buttonText}>로그인</Text>
             </TouchableOpacity>
             <View style={{textAlign: 'center', flexDirection: 'row', paddingTop: 10}}>
