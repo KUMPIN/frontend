@@ -19,7 +19,7 @@ class MainPage extends React.Component {
           </TouchableOpacity>
         </View>
         <View style={styles.items}>
-          <TouchableOpacity activeOpacity={0.5}>
+          <TouchableOpacity onPress={() => this.goAccountInfo()} activeOpacity={0.5}>
             <Icon name="key-outline" size={15} color="black"><Text> 계정 정보 설정</Text></Icon>
           </TouchableOpacity>
         </View>
@@ -55,6 +55,10 @@ class MainPage extends React.Component {
         </View>
       </View>
     );
+  }
+
+  goAccountInfo(){
+    this.props.navigation.navigate('ACCOUNT');
   }
 }
 

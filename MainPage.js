@@ -10,6 +10,22 @@ class MainPage extends React.Component {
 
   _clickedMenu
 
+  Submit = () => {
+    fetch('http://kitcapstone.iptime.org:3000', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        latitude : this.state.latitudeValue,
+        longitude : this.state.longitudeValue,
+        latitudeDelta : this.state.latitudeDeltaValue,
+        longitudeDelta : this.state.longitudeDeltaValue,
+      }),
+    }).catch(error => console.error(error));
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -29,7 +45,7 @@ class MainPage extends React.Component {
         </View>
 
         <View style={styles.bottom}>
-          <TouchableOpacity onPress={() => this.goMainScreen()} style={styles.circle} activeOpacity={0.5}>
+          <TouchableOpacity onPress={() => this.goSettingScreen()} style={styles.circle} activeOpacity={0.5}>
             <Icon name="menu-outline" size={30} color="black"/>
           </TouchableOpacity>
           <TouchableOpacity style={styles.longCircle} activeOpacity={0.5}>
@@ -43,12 +59,12 @@ class MainPage extends React.Component {
     );
   }
 
-  goMainScreen(){
-    // DetailScreen으로 화면 이동
-    this.props.navigation.navigate('DETAIL');
+  goSettingScreen(){
+    this.props.navigation.navigate('SETTING');
   }
 }
 
+// style
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',

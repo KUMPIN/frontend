@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import MainPage from './MainPage';
 import SettingPage from './SettingPage';
+import Account from './ChangeAccountInfo';
 
 const Stack = createStackNavigator();
 function App() {
@@ -13,8 +14,12 @@ function App() {
       <Stack.Navigator initialRouteName="MAIN">
         <Stack.Screen name="MAIN" component={MainPage}
         options={{ headerShown: false}}
-          />
-        <Stack.Screen name="DETAIL" component={SettingPage} 
+        />
+        <Stack.Screen name="ACCOUNT" component={Account}
+        options={{
+          title: '계정 정보 설정'
+        }}/>
+        <Stack.Screen name="SETTING" component={SettingPage} 
           options={{
             title: '설정'
         }}/>
