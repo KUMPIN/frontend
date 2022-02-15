@@ -6,12 +6,34 @@ import LoginPage from './LoginPage';
 import RegisterPage from './RegisterPage';
 import Register2Page from './Register2Page';
 import MainPage from './MainPage';
+import SettingPage from './SettingPage';
+import Alarm from './Alarm';
 
 const Stack = createStackNavigator();
 
 function App() {
   return (
-    <MainPage/>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="MAIN">
+        <Stack.Screen name="MAIN" component={MainPage}
+          options={{
+            headerShown: false
+          }}/>
+        <Stack.Screen name="SETTING" component={SettingPage}
+          options={{
+            headerShown: false
+          }}/>
+        <Stack.Screen name="ALARM" component={Alarm}
+          options={{
+            headerShown: false
+          }}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;
+
     /*<NavigationContainer>
       <Stack.Navigator initialRouteName='"LOGIN'>
         <Stack.Screen name="LOGIN" component={LoginPage}
@@ -28,7 +50,3 @@ function App() {
           }}/>
       </Stack.Navigator>
     </NavigationContainer>*/
-  );
-}
-
-export default App;

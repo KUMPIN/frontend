@@ -2,6 +2,9 @@
   package="com.firstapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
 
     <application
       android:name=".MainApplication"
@@ -9,6 +12,7 @@
       android:icon="@mipmap/ic_launcher"
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
+      android:usesCleartextTraffic="true"
       android:theme="@style/AppTheme">
       <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDTTPFRiXOV9PCcyUBQRfWby2P4SwDZlOI"/>
       <uses-library android:name="org.apache.http.legacy" android:required="false"/>
